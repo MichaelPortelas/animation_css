@@ -6,4 +6,10 @@ $cd-txt: #15DEA5;
     font-size: 3rem;
     cursor: pointer;
     padding: 1.85rem 3rem;
+    border-radius: 10rem;
+    transform: scale(1);
+    transition-property: transform;
+    &:hover{
+        transform: scale(1.15);
+    }
 }
