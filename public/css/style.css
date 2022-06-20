@@ -1,22 +1,17 @@
-.container {
-  display: flex;
-  flex-direction: column;
-}
-
 .progress {
-  width: 300px;
+  width: 500px;
   padding: 5px;
   background-color: white;
   border: 1px solid black;
   height: 28px;
   margin: 1rem;
-  order: 1;
 }
 .progress__bar {
   width: 100%;
   background-color: #15DEA5;
   height: 28px;
   margin: 0;
+  transform: scaleX(0);
 }
 
 .btn {
@@ -27,9 +22,19 @@
   font-size: 45px !important;
   padding: 10px 20px;
   position: relative;
-  z-index: 1;
   cursor: pointer;
-  order: 2;
+}
+.btn:active + .progress > .progress__bar {
+  animation: progress-bar 1000ms;
+}
+
+@keyframes progress-bar {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
