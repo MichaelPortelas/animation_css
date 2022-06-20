@@ -1,11 +1,7 @@
-$cd-txt: #6300a0;
-$cd-txt--invalid: #fff;
-$cd-danger : #b20a37 ;
-
-$shake_intensity: 1%;
-
 $cd-bars: #15DEA5;
+$cd-bars-inv: #0E397F;
 $size: 3vh;
+$num-bars: 5;
 $anim-dur: 1000ms;
 $anim-delay: $anim-dur / $num-bars;
 
@@ -18,49 +14,21 @@ $anim-delay: $anim-dur / $num-bars;
         background-color: #15DEA5;
         height: 100%;
         width: $size;
-        animation: bars $anim-dur;
+        animation: bars $anim-dur backwards infinite ease-in-out alternate;
         @for $i from 1 through $num-bars {
           &--#{$i} {
             animation-delay: $anim-delay * $i;
           }
-        }
-    }
-}
-
-.form {
-    &__group {
-        & input {
-            border: 2px solid $cd-txt;
-            border-radius: 100rem;
-            color: $cd-txt;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5rem;
-            outline: none;
-            padding: .5rem 1.5rem;
-            width: 100%;
-            &:active, &:focus {
-                border: 2px solid $cd-txt;
+          &--#{$i}-inv {
+            animation-delay: $anim-delay * $i + random(100)*15ms;
+            animation-direction: alternate-reverse;
+            animation-fill-mode: forwards;
+            background-color: $cd-bars-inv;
+            &:hover {
+              animation-play-state: paused;
             }
-            &:not(:focus):invalid {
-              color: white;
-              border: 2px solid $cd-danger;
-              background: $cd-danger;
-              animation: headshake 100ms cubic-bezier(.4,.1,.6,.9);
-              animation-iteration-count: 2;
-            }
+          }
         }
-        
-    }
-}
-
-@keyframes headshake {
-    25% {
-      // entièrement à droite
-      transform: translateX($shake_intensity);
-    }
-    75% {
-      // entièrement à gauche
-      transform: translateX(-$shake_intensity);
     }
 }
 
