@@ -24,13 +24,22 @@
   position: relative;
   cursor: pointer;
 }
-.btn:active + .progress > .progress__bar {
+.btn:active > .progress__bar {
   animation: progress-bar 1000ms;
 }
 
 @keyframes progress-bar {
   0% {
     transform: scaleX(0);
+  }
+  17% {
+    transform: scaleX(0.18);
+  }
+  24% {
+    transform: scaleX(0.4);
+  }
+  46% {
+    transform: scaleX(0.81);
   }
   100% {
     transform: scaleX(1);
