@@ -1,52 +1,76 @@
-$border-rad: 2rem;
-$mint: #15DEA5;
+$cd-txt: #6300a0;
+$cd-txt--invalid: #fff;
+$cd-danger : #b20a37 ;
 
-.progress {
-  width:500px;
-  padding:5px;
-  background-color:white;
-  border:1px solid black;
-  height:28px;
-  margin: 1rem;
-  &__bar {
-    width:100%;
-    background-color: $mint;
-    height:28px;
-    margin:0;
-    transform: scaleX(0);
-  }
+$shake_intensity: 1%;
+
+$cd-bars: #15DEA5;
+$size: 3vh;
+$anim-dur: 1000ms;
+$anim-delay: $anim-dur / $num-bars;
+
+.load {
+    width: $size*10;
+    height: $size*7.5;
+    display: flex;
+    justify-content: space-evenly;
+    &__bar {
+        background-color: #15DEA5;
+        height: 100%;
+        width: $size;
+        animation: bars $anim-dur;
+        @for $i from 1 through $num-bars {
+          &--#{$i} {
+            animation-delay: $anim-delay * $i;
+          }
+        }
+    }
 }
 
-.btn {
-  width: 10%;
-  border-radius: 25px;
-  background-color: $mint;
-  color: white;
-  font-size: 45px !important;
-  padding: 10px 20px;
-  position: relative;
-  cursor: pointer;
-  &:active {
-      & > .progress__bar {
-        animation: progress-bar 1000ms;
-      }
-  }
+.form {
+    &__group {
+        & input {
+            border: 2px solid $cd-txt;
+            border-radius: 100rem;
+            color: $cd-txt;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            outline: none;
+            padding: .5rem 1.5rem;
+            width: 100%;
+            &:active, &:focus {
+                border: 2px solid $cd-txt;
+            }
+            &:not(:focus):invalid {
+              color: white;
+              border: 2px solid $cd-danger;
+              background: $cd-danger;
+              animation: headshake 100ms cubic-bezier(.4,.1,.6,.9);
+              animation-iteration-count: 2;
+            }
+        }
+        
+    }
 }
 
-@keyframes progress-bar {
+@keyframes headshake {
+    25% {
+      // entièrement à droite
+      transform: translateX($shake_intensity);
+    }
+    75% {
+      // entièrement à gauche
+      transform: translateX(-$shake_intensity);
+    }
+}
+
+@keyframes bars {
   0% {
-    transform: scaleX(0);
-  }
-  17% {
-      transform: scaleX(.18);
-  }
-  24% {
-      transform: scaleX(.4);
-  }
-  46% {
-      transform: scaleX(.81);
+      transform: scaleY(0.5);
+      
   }
   100% {
-      transform: scaleX(1);
+      transform: scaleY(1.0);
   }
 }
+
