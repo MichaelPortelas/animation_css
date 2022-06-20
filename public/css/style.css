@@ -1,3 +1,6 @@
+.progress {
+  border: 2px;
+}
 .progress__bar {
   transform: scaleX(0);
 }
